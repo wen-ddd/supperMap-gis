@@ -16,13 +16,13 @@ import java.util.List;
 public class rsController {
 
     @Value("${spring.datasource.url}")
-    private String server = "124.71.161.224:5432";
+    private String server;
     @Value("${spring.datasource.database}")
-    private String database = "test";
+    private String database;
     @Value("${spring.datasource.username}")
-    private String userName = "postgres";
+    private String userName;
     @Value("${spring.datasource.password}")
-    private String password = "admin123";
+    private String password;
 
     List arrayList = new ArrayList();
     util util = new util();
@@ -35,7 +35,7 @@ public class rsController {
 
         try {
 
-            Datasource ds = util.openDatasourcePostgreSQL(server,database,userName,password);
+            Datasource ds = util.openDatasourcePostgreSQL(server, database, userName, password);
             // 打开成功,输出数据源相关信息
             // Open successfully, and output the information of the datasource.
             if (ds != null) {
@@ -88,17 +88,17 @@ public class rsController {
 
                 recordset.dispose();
 
-                return new json("查询成功","200",arrayList);
+                return new json("查询成功", "200", arrayList);
 
             } else {
 
-                return new json("查询失败","201",arrayList);
+                return new json("查询失败", "201", arrayList);
 
             }
 
         } catch (Exception ex) {
 
-            return new json("查询失败","201",arrayList);
+            return new json("查询失败", "201", arrayList);
 
         }
 
