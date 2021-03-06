@@ -15,6 +15,7 @@ import java.util.List;
 @Controller
 public class rsController {
 
+
     @Value("${spring.datasource.url}")
     private String server = "124.71.161.224:5432";
     @Value("${spring.datasource.database}")
