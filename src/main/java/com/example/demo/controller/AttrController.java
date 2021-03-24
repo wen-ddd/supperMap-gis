@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.JDBCProperties;
-import com.example.demo.service.gsgdxzService;
+import com.example.demo.service.AttrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,18 +18,187 @@ public class AttrController {
     @Autowired
     JDBCProperties JDBCProperties;
 
-    gsgdxzService gsgdxzService = new gsgdxzService();
+    AttrService AttrService = new AttrService();
 
+    /**
+     * 供水管道现状
+     * @param param
+     * @return
+     */
     @RequestMapping("/gsgdxz")
     @ResponseBody
     public Object gsgdxzList(@RequestParam(value = "param", required = false, defaultValue = "") String param) {
 
-        List gsgdxzList = gsgdxzService.gsgdxzList(param,JDBCProperties);
+        List gsgdxzList = AttrService.gsgdxzList(param,JDBCProperties);
 
         return new json("查询成功", "200", gsgdxzList);
 
     }
 
+    /**
+     * 供水水厂现状
+     * @param param
+     * @return
+     */
+    @RequestMapping("/gsscxz")
+    @ResponseBody
+    public Object gsscxzList(@RequestParam(value = "param", required = false, defaultValue = "") String param) {
+
+        List gsscxzList = AttrService.gsscxzList(param,JDBCProperties);
+
+        return new json("查询成功", "200", gsscxzList);
+
+    }
+
+    /**
+     * 供水高位水厂现状
+     * @param param
+     * @return
+     */
+    @RequestMapping("/gsgwscxz")
+    @ResponseBody
+    public Object gsgwscxzList(@RequestParam(value = "param", required = false, defaultValue = "") String param) {
+
+        List gsgwscxzList = AttrService.gsgwscxzList(param,JDBCProperties);
+
+        return new json("查询成功", "200", gsgwscxzList);
+
+    }
+
+    /**
+     * 雨水管道现状
+     * @param param
+     * @return
+     */
+    @RequestMapping("/ysgdxz")
+    @ResponseBody
+    public Object ysgdxzList(@RequestParam(value = "param", required = false, defaultValue = "") String param) {
+
+        List ysgdxzList = AttrService.ysgdxzList(param,JDBCProperties);
+
+        return new json("查询成功", "200", ysgdxzList);
+
+    }
+
+    /**
+     * 雨水渠现状
+     * @param param
+     * @return
+     */
+    @RequestMapping("/ysqxz")
+    @ResponseBody
+    public Object ysqxzList(@RequestParam(value = "param", required = false, defaultValue = "") String param) {
+
+        List ysqxzList = AttrService.ysqxzList(param,JDBCProperties);
+
+        return new json("查询成功", "200", ysqxzList);
+
+    }
+
+    /**
+     * 雨水排水口现状
+     * @param param
+     * @return
+     */
+    @RequestMapping("/yspskxz")
+    @ResponseBody
+    public Object yspskxzList(@RequestParam(value = "param", required = false, defaultValue = "") String param) {
+
+        List yspskxzList = AttrService.yspskxzList(param,JDBCProperties);
+
+        return new json("查询成功", "200", yspskxzList);
+
+    }
+
+    /**
+     * 雨水提升泵站现状
+     * @param param
+     * @return
+     */
+    @RequestMapping("/ystsbzxz")
+    @ResponseBody
+    public Object ystsbzxzList(@RequestParam(value = "param", required = false, defaultValue = "") String param) {
+
+        List ystsbzxzList = AttrService.ystsbzxzList(param,JDBCProperties);
+
+        return new json("查询成功", "200", ystsbzxzList);
+
+    }
+
+    /**
+     * 污水管道现状
+     * @param param
+     * @return
+     */
+    @RequestMapping("/wsgdxz")
+    @ResponseBody
+    public Object wsgdxzList(@RequestParam(value = "param", required = false, defaultValue = "") String param) {
+
+        List wsgdxzList = AttrService.wsgdxzList(param,JDBCProperties);
+
+        return new json("查询成功", "200", wsgdxzList);
+
+    }
+
+    /**
+     * 污水提升泵站现状
+     * @param param
+     * @return
+     */
+    @RequestMapping("/wstsbzxz")
+    @ResponseBody
+    public Object wstsbzxzList(@RequestParam(value = "param", required = false, defaultValue = "") String param) {
+
+        List wstsbzxzList = AttrService.wstsbzxzList(param,JDBCProperties);
+
+        return new json("查询成功", "200", wstsbzxzList);
+
+    }
+
+    /**
+     * 污水处理厂现状
+     * @param param
+     * @return
+     */
+    @RequestMapping("/wsclcxz")
+    @ResponseBody
+    public Object wsclcxzList(@RequestParam(value = "param", required = false, defaultValue = "") String param) {
+
+        List wsclcxzList = AttrService.wsclcxzList(param,JDBCProperties);
+
+        return new json("查询成功", "200", wsclcxzList);
+
+    }
+
+    /**
+     * 污水站企业专用现状
+     * @param param
+     * @return
+     */
+    @RequestMapping("/wszqyzyxz")
+    @ResponseBody
+    public Object wszqyzyxzList(@RequestParam(value = "param", required = false, defaultValue = "") String param) {
+
+        List wszqyzyxzList = AttrService.wszqyzyxzList(param,JDBCProperties);
+
+        return new json("查询成功", "200", wszqyzyxzList);
+
+    }
+
+    /**
+     * 通讯线现状
+     * @param param
+     * @return
+     */
+    @RequestMapping("/wszqyzyxz")
+    @ResponseBody
+    public Object txxxzList(@RequestParam(value = "param", required = false, defaultValue = "") String param) {
+
+        List txxxzList = AttrService.txxxzList(param,JDBCProperties);
+
+        return new json("查询成功", "200", txxxzList);
+
+    }
 
 //    @RequestMapping("/gsgdxz/space")
 //    @ResponseBody
