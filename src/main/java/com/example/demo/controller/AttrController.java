@@ -190,7 +190,7 @@ public class AttrController {
      * @param param
      * @return
      */
-    @RequestMapping("/wszqyzyxz")
+    @RequestMapping("/txxxz")
     @ResponseBody
     public Object txxxzList(@RequestParam(value = "param", required = false, defaultValue = "") String param) {
 
