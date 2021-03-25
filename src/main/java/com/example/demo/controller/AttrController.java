@@ -200,6 +200,36 @@ public class AttrController {
 
     }
 
+
+    /**
+     * 通讯基站现状
+     * @param param
+     * @return
+     */
+    @RequestMapping("/txxxz")
+    @ResponseBody
+    public Object txjzxzList(@RequestParam(value = "param", required = false, defaultValue = "") String param) {
+
+        List txjzxzList = AttrService.txjzxzList(param,JDBCProperties);
+
+        return new json("查询成功", "200", txjzxzList);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //    @RequestMapping("/gsgdxz/space")
 //    @ResponseBody
 //    public Object getSpaceData(@RequestParam(value = "param", required = false, defaultValue = "") String param) {

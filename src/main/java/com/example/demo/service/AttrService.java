@@ -1035,4 +1035,89 @@ public class AttrService {
 
     }
 
+    /**
+     * 通讯基站现状
+     * @param param
+     * @param JDBCProperties
+     * @return
+     */
+    public List txjzxzList(String param, JDBCProperties JDBCProperties) {
+
+        try {
+
+            Datasource ds = util.openDatasourcePostgreSQL(JDBCProperties.getUrl(), JDBCProperties.getDatabase(), JDBCProperties.getUsername(), JDBCProperties.getPassword());
+            // 打开成功,输出数据源相关信息
+            // Open successfully, and output the information of the datasource.
+            if (ds != null) {
+                List arrayList = new ArrayList();
+
+                DatasetVector datasetVector = (DatasetVector) ds.getDatasets().get("txjzxz");
+
+                //根据属性条件查询
+                QueryParameter queryParameter = new QueryParameter();
+                queryParameter.setAttributeFilter(param);
+                queryParameter.setHasGeometry(true);
+
+                // 根据查询条件执行查询操作，返回查询结果记录集
+                Recordset recordset = datasetVector.query(queryParameter);
+
+                int recordCount = recordset.getRecordCount();
+                recordset.moveFirst();
+
+                for (int i = 0; i < recordCount; i++) {
+
+                    txjzxz txjzxz = new txjzxz();
+
+                    Geometry geometry = recordset.getGeometry();
+
+                    String geojson = Toolkit.GeometryToGeoJson(geometry);
+                    String id = String.valueOf(recordset.getFieldValue("id"));
+                    String rydl = String.valueOf(recordset.getFieldValue("rydl"));
+                    String fwbj = String.valueOf(recordset.getFieldValue("fwbj"));
+
+
+                    txjzxz.setId(Integer.valueOf(id));
+                    txjzxz.setRydl(Double.valueOf(rydl));
+                    txjzxz.setFwbj(Double.valueOf(fwbj));
+
+
+                    txjzxz.setJzbh((String) recordset.getFieldValue("jzbh"));
+                    txjzxz.setJzmc((String) recordset.getFieldValue("jzmc"));
+                    txjzxz.setXzrq((String) recordset.getFieldValue("xzrq"));
+                    txjzxz.setXzqdm((String) recordset.getFieldValue("xzqdm"));
+                    txjzxz.setXzqmc((String) recordset.getFieldValue("xzqmc"));
+                    txjzxz.setWz((String) recordset.getFieldValue("wz"));
+                    txjzxz.setJsnd((String) recordset.getFieldValue("jsnd"));
+                    txjzxz.setTxyys((String) recordset.getFieldValue("txyys"));
+                    txjzxz.setJzjb((String) recordset.getFieldValue("jzjb"));
+
+                    txjzxz.setGeom(geojson);
+
+                    arrayList.add(txjzxz);
+
+                    geometry.dispose();
+
+                    recordset.moveNext();
+
+                }
+
+                recordset.dispose();
+
+                return arrayList;
+
+            } else {
+
+                return new ArrayList();
+
+            }
+
+        } catch (Exception ex) {
+
+            return new ArrayList();
+
+        }
+
+
+    }
+
 }
